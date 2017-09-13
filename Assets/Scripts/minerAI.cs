@@ -83,11 +83,16 @@ public class minerAI : MonoBehaviour {
         m_Thirst += 1;
     }
 
+    public void PayDrink()
+    {
+        m_GoldCarried -= 1;
+        m_SpaceInPockets += 1;
+    }
+
     public void Drink()
     {
         m_Thirst = 0;
-        EmptyPockets();
-
+        PayDrink();
     }
 
     public void Rest()
@@ -98,11 +103,14 @@ public class minerAI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        m_StateMachine = new StateMachine(this);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        m_StateMachine.m_GlobalState.Execute(this);
+        if (m_StateMachine.m_CurrentState != null)
+            m_StateMachine.m_CurrentState.Execute(this);
+        m_StateMachine.CheckState();
+    }
 }

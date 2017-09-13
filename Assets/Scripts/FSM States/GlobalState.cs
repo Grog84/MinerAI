@@ -13,14 +13,12 @@ public class GlobalState : State {
 
     override public void Execute(minerAI miner)
     {
-        if (miner.GetThirst() >= 5)
+        if (miner.GetThirst() >= 5 && miner.GetSpaceInPocket() < 2)
         {
             StateMachine this_StateMachine = miner.GetStateMachine();
-            this_StateMachine.ChangeState();
+            this_StateMachine.GlobalExecute();
         }
-        Debug.Log("Ahh!! What a refreshing good'ol' whiskey!");
-        miner.Drink();
-
+        
         //Exit(miner);
 
     }
