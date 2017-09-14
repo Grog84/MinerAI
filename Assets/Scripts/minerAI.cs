@@ -11,6 +11,7 @@ public class minerAI : MonoBehaviour {
     private int m_SpaceInPockets = 2;
 
     private StateMachine m_StateMachine;
+    private DispatchManager m_DispatchManager;
 
     public minerAI()
     {

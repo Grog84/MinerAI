@@ -58,7 +58,11 @@ public class StateMachine {
         else if (m_CurrentState == m_Rest && m_miner.GetFatigue() <= 0 && m_miner.GetSavings() >= 8)
         {
             m_Rest.Exit(m_miner);
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #else
             Application.Quit();
+            #endif
         }
         else if (m_CurrentState == m_Dig && m_miner.GetSpaceInPocket() == 0)
         {
@@ -74,15 +78,5 @@ public class StateMachine {
         }
     }
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //m_GlobalState.Execute(m_miner);
-        //if (m_CurrentState != null)
-        //    m_CurrentState.Execute(m_miner);
-        //CheckState();
     }
 }
