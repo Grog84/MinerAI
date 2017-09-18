@@ -4,10 +4,10 @@ using UnityEngine;
 
 public struct Telegram {
 
-    int Sender;
-    int Receiver;
-    int Msg;
-
     double dispatchTime;
-	
+
+    int sender;
+    int receiver;
+    int msg;
+
 }
